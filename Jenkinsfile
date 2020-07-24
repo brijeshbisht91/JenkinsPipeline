@@ -24,6 +24,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
+        input(message: 'Do you want to deploy?', id: 'ok')
         echo 'Deploy the app in ISS server'
       }
     }
