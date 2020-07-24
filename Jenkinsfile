@@ -33,6 +33,11 @@ pipeline {
 
     stage('Deploy') {
       parallel {
+        when 
+        {
+          branch 'master'
+          
+        }
         stage('Deploy') {
           steps {
             input(message: 'Do you want to deploy?', id: 'ok')
