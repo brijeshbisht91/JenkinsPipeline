@@ -2,6 +2,9 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      environment {
+        chromeDriverPath = 'c:\\driver\\path'
+      }
       parallel {
         stage('Build') {
           steps {
@@ -12,6 +15,7 @@ pipeline {
         stage('Test') {
           steps {
             echo 'Testing the application'
+            echo '"Get Driver Path ${chromeDriverPath}"'
           }
         }
 
@@ -24,5 +28,8 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    chromeDriverPath = 'C:\\Driver\\Path'
   }
 }
