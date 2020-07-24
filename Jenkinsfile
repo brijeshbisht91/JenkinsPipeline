@@ -29,9 +29,20 @@ pipeline {
     }
 
     stage('Deploy') {
-      steps {
-        input(message: 'Do you want to deploy?', id: 'ok')
-        echo 'Deploy the app in ISS server'
+      parallel {
+        stage('Deploy') {
+          steps {
+            input(message: 'Do you want to deploy?', id: 'ok')
+            echo 'Deploy the app in ISS server'
+          }
+        }
+
+        stage('Artifacts') {
+          steps {
+            archiveArtifacts 'LogTestFile.txt'
+          }
+        }
+
       }
     }
 
